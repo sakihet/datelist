@@ -1,6 +1,7 @@
 <template>
   <div>
     <input
+      :id="inputId"
       :type="inputType"
       :value="value"
       @input="$emit('input', $event.target.value)"
@@ -13,7 +14,14 @@
 export default {
   name: 'AppInput',
   props: {
-    inputType: String,
+    inputId: {
+      type: String,
+      required: true
+    },
+    inputType: {
+      type: String,
+      required: true
+    },
     value: [String, Number, Boolean]
   }
 }

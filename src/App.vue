@@ -4,66 +4,41 @@
       <AppHeader
         text="Datelist"
       />
-      <FormCentered>
-        <template v-slot:leftContent>
-          <label for="prefix">prefix</label>
-        </template>
-        <template v-slot:rightContent>
-          <AppInput
-            inputType="text"
-            :value="prefix"
-            @input="prefix = $event"
-          />
-        </template>
-      </FormCentered>
-      <FormCentered>
-        <template v-slot:leftContent>
-          <label for="locale">locale</label>
-        </template>
-        <template v-slot:rightContent>
-          <AppInput
-            inputType="text"
-            :value="locale"
-            @input="locale = $event"
-          />
-        </template>
-      </FormCentered>
-      <FormCentered>
-        <template v-slot:leftContent>
-          <label for="text">start date</label>
-        </template>
-        <template v-slot:rightContent>
-          <AppInput
-            inputType="date"
-            :value="startDate"
-            @input="startDate = $event"
-          />
-        </template>
-      </FormCentered>
-      <FormCentered>
-        <template v-slot:leftContent>
-          <label for="days">days</label>
-        </template>
-        <template v-slot:rightContent>
-          <AppInput
-            inputType="number"
-            :value="days"
-            @input="days = $event"
-          />
-        </template>
-      </FormCentered>
-      <FormCentered>
-        <template v-slot:leftContent>
-          <label for="format">format</label>
-        </template>
-        <template v-slot:rightContent>
-          <AppInput
-            inputType="text"
-            :value="format"
-            @input="format = $event"
-          />
-        </template>
-      </FormCentered>
+      <InputLabeled
+        inputId="prefix"
+        inputType="text"
+        labelName="prefix"
+        :value="prefixValue"
+        @input="prefixValue = $event"
+      />
+      <InputLabeled
+        inputId="locale"
+        inputType="text"
+        labelName="locale"
+        :value="localeValue"
+        @input="localeValue = $event"
+      />
+      <InputLabeled
+        inputId="startDate"
+        inputType="date"
+        labelName="start date"
+        :value="startDateValue"
+        @input="startDateValue = $event"
+      />
+      <InputLabeled
+        inputId="days"
+        inputType="number"
+        labelName="days"
+        :value="daysValue"
+        @input="daysValue = $event"
+      />
+      <InputLabeled
+        inputId="format"
+        inputType="text"
+        labelName="format"
+        :value="formatValue"
+        @input="formatValue = $event"
+      />
       <AppTextarea />
       <AppButton
         text="copy to clipboard"
@@ -75,18 +50,30 @@
 <script>
 import AppButton from './components/AppButton'
 import AppHeader from './components/AppHeader'
-import AppInput from './components/AppInput'
 import AppTextarea from './components/AppTextarea'
-import FormCentered from './components/FormCentered'
+import InputLabeled from './components/InputLabeled'
 
 export default {
   name: 'App',
   components: {
     AppButton,
     AppHeader,
-    AppInput,
     AppTextarea,
-    FormCentered
+    InputLabeled
+  },
+  data () {
+    return {
+      prefixValue: '# ',
+      localeValue: 'en',
+      startDateValue: '',
+      daysValue: 7,
+      formatValue: 'YYMMDDddd'
+    }
+  },
+  methods: {
+    copy: function () {
+      console.log('copy')
+    }
   }
 }
 </script>
