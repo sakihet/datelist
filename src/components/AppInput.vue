@@ -4,8 +4,7 @@
       :id="inputId"
       :type="inputType"
       :value="value"
-      @input="$emit('input', $event.target.value)"
-      @change="$emit('change', $event.target.checked)"
+      @input="$emit('update', $event.target.value)"
     >
   </div>
 </template>

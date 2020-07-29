@@ -9,37 +9,38 @@
         inputType="text"
         labelName="prefix"
         :value="prefixValue"
-        @input="prefixValue = $event"
+        @update="prefixValue = $event"
       />
       <InputLabeled
         inputId="locale"
         inputType="text"
         labelName="locale"
         :value="localeValue"
-        @input="localeValue = $event"
+        @update="localeValue = $event"
       />
       <InputLabeled
         inputId="startDate"
         inputType="date"
         labelName="start date"
         :value="startDateValue"
-        @input="startDateValue = $event"
+        @update="startDateValue = $event"
       />
       <InputLabeled
         inputId="days"
         inputType="number"
         labelName="days"
         :value="daysValue"
-        @input="daysValue = $event"
+        @update="daysValue = $event"
       />
       <InputLabeled
         inputId="format"
         inputType="text"
         labelName="format"
         :value="formatValue"
-        @input="formatValue = $event"
+        @update="formatValue = $event"
       />
       <AppTextarea />
+      {{ generatedString }}
       <AppButton
         text="copy to clipboard"
       />
@@ -52,6 +53,7 @@ import AppButton from './components/AppButton'
 import AppHeader from './components/AppHeader'
 import AppTextarea from './components/AppTextarea'
 import InputLabeled from './components/InputLabeled'
+import dayjs from 'dayjs'
 
 export default {
   name: 'App',
@@ -68,6 +70,16 @@ export default {
       startDateValue: '',
       daysValue: 7,
       formatValue: 'YYMMDDddd'
+    }
+  },
+  computed: {
+    generatedString: function () {
+      let str = ''
+      for (var i = 0; i < this.daysValue; i++) {
+        str += this.prefixValue + dayjs().add(i, 'day').format(this.formatValue)
+        str += '\n'
+      }
+      return str
     }
   },
   methods: {

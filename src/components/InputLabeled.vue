@@ -11,7 +11,7 @@
         :inputId="inputId"
         :inputType="inputType"
         :value="value"
-        @input="value = $event"
+        @update="$emit('update', $event)"
       />
     </div>
   </div>
