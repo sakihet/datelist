@@ -39,6 +39,7 @@
       />
       <AppButton
         text="copy to clipboard"
+        @onClick="copy"
       />
       <a href="https://github.com/sakihet/datelist" target="_blank">github</a>
       <p>version: {{ version }}</p>
@@ -52,6 +53,7 @@ import AppHeader from './components/AppHeader'
 import AppTextarea from './components/AppTextarea'
 import InputLabeled from './components/InputLabeled'
 import dayjs from 'dayjs'
+import mcopy from 'modern-copy'
 import { version } from '../package.json'
 
 export default {
@@ -86,7 +88,7 @@ export default {
   },
   methods: {
     copy: function () {
-      console.log('copy')
+      mcopy(this.generatedString)
     }
   }
 }

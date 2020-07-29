@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="onClick">
+    <button @click="$emit('onClick')">
       {{ text }}
     </button>
   </div>
