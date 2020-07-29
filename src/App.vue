@@ -40,6 +40,8 @@
       <AppButton
         text="copy to clipboard"
       />
+      <a href="https://github.com/sakihet/datelist" target="_blank">github</a>
+      <p>version: {{ version }}</p>
     </div>
   </div>
 </template>
@@ -50,6 +52,7 @@ import AppHeader from './components/AppHeader'
 import AppTextarea from './components/AppTextarea'
 import InputLabeled from './components/InputLabeled'
 import dayjs from 'dayjs'
+import { version } from '../package.json'
 
 export default {
   name: 'App',
@@ -64,7 +67,8 @@ export default {
       prefixValue: '# ',
       startDateValue: '',
       daysValue: 7,
-      formatValue: 'YYMMDDddd'
+      formatValue: 'YYMMDDddd',
+      version: version
     }
   },
   created: function () {
