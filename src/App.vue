@@ -12,13 +12,6 @@
         @update="prefixValue = $event"
       />
       <InputLabeled
-        inputId="locale"
-        inputType="text"
-        labelName="locale"
-        :value="localeValue"
-        @update="localeValue = $event"
-      />
-      <InputLabeled
         inputId="startDate"
         inputType="date"
         labelName="start date"
@@ -39,8 +32,11 @@
         :value="formatValue"
         @update="formatValue = $event"
       />
-      <AppTextarea />
-      {{ generatedString }}
+      <AppTextarea
+        :readonly="true"
+        rows="10"
+        :value="generatedString"
+      />
       <AppButton
         text="copy to clipboard"
       />
@@ -66,17 +62,19 @@ export default {
   data () {
     return {
       prefixValue: '# ',
-      localeValue: 'en',
       startDateValue: '',
       daysValue: 7,
       formatValue: 'YYMMDDddd'
     }
   },
+  created: function () {
+    this.startDateValue = dayjs().format('YYYY-MM-DD')
+  },
   computed: {
     generatedString: function () {
       let str = ''
       for (var i = 0; i < this.daysValue; i++) {
-        str += this.prefixValue + dayjs().add(i, 'day').format(this.formatValue)
+        str += this.prefixValue + dayjs(this.startDateValue).add(i, 'day').format(this.formatValue)
         str += '\n'
       }
       return str

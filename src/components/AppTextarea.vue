@@ -1,9 +1,9 @@
 <template>
   <div>
     <textarea
-        :value="value"
-      @input="$emit('input', $event.target.value)"
-      @change="$emit('change', $event.target.checked)"
+      :readonly="readonly"
+      :rows="rows"
+      :value="value"
     ></textarea>
   </div>
 </template>
@@ -12,6 +12,8 @@
 export default {
   name: 'AppTextarea',
   props: {
+    readonly: Boolean,
+    rows: String,
     value: String
   }
 }
